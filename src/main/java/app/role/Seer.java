@@ -1,20 +1,23 @@
 package app.role;
 
-import app.team.GoodTeam;
+import org.springframework.stereotype.Component;
 
-public class Seer extends Player implements NightOwl{
-	
+import app.team.GoodTeam;
+import app.team.Team;
+@Component
+public class Seer extends PlayerImpl implements NightOwl{
+	private Role role = Role.SEER;
 	@Override
 	public void doNightAction() {
 		
 	}
 
-	public Seer(int number, GoodTeam goodTeam) {
+	public Seer(int number, Team goodTeam) {
 		super(number, goodTeam);
 		this.setRole(Role.SEER);
 	}
 
-	public Role identify(Player identified) {
+	public Role identify(PlayerImpl identified) {
 		return identified.getRole();
 	}
 	

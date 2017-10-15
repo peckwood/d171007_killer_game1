@@ -2,13 +2,15 @@ package app.role;
 
 import static app.Status.*;
 
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import app.Status;
 import app.team.Team;
 
-@Component
-public class Player {
+@Component()
+@Scope("prototype")
+public class PlayerImpl implements Player{
 	//号码
 	private int number;
 	private String nickname;
@@ -19,11 +21,15 @@ public class Player {
 	private Player killedBy;
 	private int roundKilled;
 
-	public Player(int number, Team team) {
+	protected PlayerImpl(int number, Team team) {
 		this.number = number;
 		this.team = team;
 	}
 	
+	protected PlayerImpl() {
+	}
+	
+	@Override
 	public void die(int roundKilled, Player killer){
 		this.status = DEAD;
 		this.killedBy = killer;
@@ -51,7 +57,7 @@ public class Player {
 	public Player getKilledBy() {
 		return killedBy;
 	}
-	public void setKilledBy(Player killedBy) {
+	public void setKilledBy(PlayerImpl killedBy) {
 		this.killedBy = killedBy;
 	}
 	public int getRoundKilled() {

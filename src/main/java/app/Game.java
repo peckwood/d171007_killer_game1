@@ -6,19 +6,24 @@ import java.util.Scanner;
 import java.util.function.Predicate;
 
 import org.junit.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import app.role.Player;
+import app.role.PlayerImpl;
 
 public class Game {
+	
+	@Autowired
 	private List<Player> players;
-	private int round;
-	private String log;
+	private int round = 1;
+	private String gameLog = "";
 	Scanner input  = new Scanner(System.in);
 	
 	@Test
 	public void runGame(){
 		GameSetup setup = new GameSetup();
-		setup.setup("10 2 3 2 2");
+		setup.setup();
 		System.out.println(setup);
 	}
 	
@@ -33,6 +38,16 @@ public class Game {
 		.filter(predicate)
 		.findFirst()
 		.get();
+	}
+
+
+	public void setPlayers(List<Player> players) {
+		this.players = players;
+	}
+
+
+	public List<Player> getPlayers() {
+		return players;
 	}
 	
 	
