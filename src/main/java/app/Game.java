@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 
 import app.role.Player;
 import app.role.PlayerImpl;
-
+@Component
 public class Game {
 	
 	@Autowired

@@ -1,6 +1,29 @@
 package app.role;
 
+import org.springframework.stereotype.Component;
 
-public interface Guardian extends NightOwl{
+import app.team.GoodTeam;
+import app.team.Team;
+@Component("guardian")
+public class Guardian extends PlayerImpl implements NightOwl{
+	private Role role = Role.GUARDIAN;
+	
+	public Guardian(int number, Team goodTeam) {
+		super(number, goodTeam);
+		this.setRole(Role.GUARDIAN);
+	}
+
+	public Guardian() {
+	}
+
+	@Override
+	public void doNightAction() {
+		
+	}
+
+
+	public void guard(Player target) {
+		
+	}
 	
 }

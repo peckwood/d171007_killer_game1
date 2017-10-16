@@ -29,9 +29,9 @@ public class PlayerFactory extends AbstractFactoryBean<PlayerImpl>{
 		case CIVILIAN:
 			return new Civilian(playerNumber, goodTeam);
 		case GUARDIAN:
-			return new GuardianImpl(playerNumber, goodTeam);
+			return new Guardian(playerNumber, goodTeam);
 		case KILLER:
-			return new KillerImpl(playerNumber, evilTeam);
+			return new Killer(playerNumber, evilTeam);
 		case SEER:
 			return new Seer(playerNumber, goodTeam);
 		case WITCH:

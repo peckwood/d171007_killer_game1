@@ -16,6 +16,9 @@ public class Witch extends PlayerImpl implements NightOwl{
 		this.setRole(Role.WITCH);
 	}
 	
+	public Witch() {
+	}
+
 	private void poison(PlayerImpl player){
 		if(poisonCount>0){
 			poisonCount--;

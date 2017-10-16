@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 import app.Status;
 import app.team.Team;
 
-@Component()
+@Component("player")
 @Scope("prototype")
 public class PlayerImpl implements Player{
 	//号码

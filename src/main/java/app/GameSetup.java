@@ -10,8 +10,8 @@ import java.util.Random;
 import org.springframework.stereotype.Component;
 
 import app.role.Civilian;
-import app.role.GuardianImpl;
-import app.role.KillerImpl;
+import app.role.Guardian;
+import app.role.Killer;
 import app.role.PlayerImpl;
 import app.role.Role;
 import app.role.Seer;
@@ -88,7 +88,7 @@ public class GameSetup {
 			int currentRoleIndex= random.nextInt(allRoleList.size());
 			switch(allRoleList.get(currentRoleIndex)){
 			case KILLER:
-				players.add(new KillerImpl(currentPlayerNumber, evilTeam));
+				players.add(new Killer(currentPlayerNumber, evilTeam));
 				break;
 			case SEER:
 				players.add(new Seer(currentPlayerNumber, goodTeam));
@@ -97,7 +97,7 @@ public class GameSetup {
 				players.add(new Witch(currentPlayerNumber, goodTeam));
 				break;
 			case GUARDIAN:
-				players.add(new GuardianImpl(currentPlayerNumber, goodTeam));
+				players.add(new Guardian(currentPlayerNumber, goodTeam));
 				break;
 			case CIVILIAN:
 				players.add(new Civilian(currentPlayerNumber, goodTeam));
