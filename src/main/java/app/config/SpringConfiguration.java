@@ -9,9 +9,11 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
+import org.springframework.context.annotation.Scope;
 
 import app.GameSetup;
 import app.aspect.Balance;
+import app.role.Killer;
 import app.role.Player;
 import app.team.EvilTeam;
 import app.team.GoodTeam;
@@ -50,11 +52,15 @@ public class SpringConfiguration {
 		setup.setupTeams();
 		return setup;
 	}
-	
+	@Bean
+	@Scope("prototype")
+	public Player killer(){
+		return new Killer();
+	}
 	
 	@Bean
 	public List<Player> players(GameSetup setup, GoodTeam goodTeam, EvilTeam evilTeam, 
-			Player killer, Player guardian, Player seer, Player witch, Player civilian){//, Seer seer, Witch witch, Civilian civilian
+			Player guardian, Player seer, Player witch, Player civilian){//, Seer seer, Witch witch, Civilian civilian
 		Random random = new Random();
 		List<Player> players = new ArrayList<>();
 		
@@ -65,6 +71,7 @@ public class SpringConfiguration {
 			int currentRoleIndex= random.nextInt(setup.getAllRoleList().size());
 			switch(setup.getAllRoleList().get(currentRoleIndex)){
 			case KILLER:
+				Player killer = killer();
 				killer.setNumber(currentPlayerNumber);
 				killer.setTeam(evilTeam);
 				players.add(killer);

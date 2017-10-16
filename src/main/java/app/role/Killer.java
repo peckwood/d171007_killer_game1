@@ -7,7 +7,7 @@ import app.Status;
 import app.team.EvilTeam;
 import app.team.Team;
 
-@Component("killer")
+//@Component("killer")
 @Scope("prototype")
 public class Killer extends PlayerImpl implements NightOwl{
 	private Role role = Role.KILLER;
