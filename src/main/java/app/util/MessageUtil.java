@@ -2,6 +2,8 @@ package app.util;
 
 import java.util.Scanner;
 
+import org.springframework.stereotype.Component;
+@Component
 public class MessageUtil {
 	private static Scanner input = new Scanner(System.in);
 	public static void displayMessage(String message){

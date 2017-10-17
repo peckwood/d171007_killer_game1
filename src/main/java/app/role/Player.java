@@ -1,6 +1,6 @@
 package app.role;
 
-import app.team.EvilTeam;
+import app.Status;
 import app.team.Team;
 
 public interface Player {
@@ -12,4 +12,7 @@ public interface Player {
 	void setTeam(Team team);
 
 	int getNumber();
+
+	Status getStatus();
+	
 }

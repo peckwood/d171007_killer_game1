@@ -4,7 +4,6 @@ import org.springframework.stereotype.Component;
 
 import app.team.GoodTeam;
 import app.team.Team;
-@Component("guardian")
 public class Guardian extends PlayerImpl implements NightOwl{
 	private Role role = Role.GUARDIAN;
 	

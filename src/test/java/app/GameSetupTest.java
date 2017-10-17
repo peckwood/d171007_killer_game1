@@ -20,7 +20,6 @@ public class GameSetupTest {
 	
 	@Test
 	public void testSetup(){
-		System.out.println(game.getPlayers());
 		game.getPlayers().get(0).die(1, game.getPlayers().get(1));
 	}
 }

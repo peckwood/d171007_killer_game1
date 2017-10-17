@@ -1,30 +1,15 @@
 package app.role;
 
-import org.springframework.beans.factory.config.AbstractFactoryBean;
+import org.springframework.stereotype.Component;
 
 import app.team.EvilTeam;
 import app.team.GoodTeam;
+import app.team.Team;
 
-public class PlayerFactory extends AbstractFactoryBean<PlayerImpl>{
-	
+@Component
+public class PlayerFactory{
 
-	private GoodTeam goodTeam;
-	private EvilTeam evilTeam;
-	private int playerNumber;
-	private Role playerRole;
-	
-
-	public PlayerFactory() {
-		setSingleton(false);
-	}
-
-	@Override
-	public Class<?> getObjectType() {
-		return PlayerImpl.class;
-	}
-
-	@Override
-	protected PlayerImpl createInstance() throws Exception {
+	public static Player createPlayer(Role playerRole, GoodTeam goodTeam, EvilTeam evilTeam, int playerNumber){
 		switch (playerRole) {
 		case CIVILIAN:
 			return new Civilian(playerNumber, goodTeam);
@@ -39,13 +24,5 @@ public class PlayerFactory extends AbstractFactoryBean<PlayerImpl>{
 		default:
 			return null;
 		}
-	}
-	
-	public void setGoodTeam(GoodTeam goodTeam) {
-		this.goodTeam = goodTeam;
-	}
-	
-	public void setEvilTeam(EvilTeam evilTeam) {
-		this.evilTeam = evilTeam;
 	}
 }

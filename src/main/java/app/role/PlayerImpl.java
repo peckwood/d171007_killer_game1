@@ -48,6 +48,7 @@ public class PlayerImpl implements Player{
 	public void setNickname(String nickname) {
 		this.nickname = nickname;
 	}
+	@Override
 	public Status getStatus() {
 		return status;
 	}

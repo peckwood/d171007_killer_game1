@@ -69,7 +69,6 @@ public class GameSetup {
 		allRoleList.addAll(Arrays.asList(witchRoleArray));
 		allRoleList.addAll(Arrays.asList(guardianRoleArray));
 		allRoleList.addAll(Arrays.asList(civilianRoleArray));
-		System.out.println(allRoleList);
 	}
 
 	public List<PlayerImpl> setup() {
@@ -105,7 +104,6 @@ public class GameSetup {
 			}
 			allRoleList.remove(currentRoleIndex);
 		}
-		System.out.println(players);
 	}
 
 	public List<Role> getAllRoleList() {

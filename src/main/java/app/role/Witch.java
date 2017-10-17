@@ -4,7 +4,7 @@ import org.springframework.stereotype.Component;
 
 import app.team.GoodTeam;
 import app.team.Team;
-@Component
+
 public class Witch extends PlayerImpl implements NightOwl{
 	private Role role = Role.WITCH;
 	

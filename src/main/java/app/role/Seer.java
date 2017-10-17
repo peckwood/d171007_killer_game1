@@ -3,7 +3,7 @@ package app.role;
 import org.springframework.stereotype.Component;
 
 import app.team.Team;
-@Component("seer")
+
 public class Seer extends PlayerImpl implements NightOwl{
 	private Role role = Role.SEER;
 	

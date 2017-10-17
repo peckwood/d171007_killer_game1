@@ -13,8 +13,14 @@ import org.springframework.context.annotation.Scope;
 
 import app.GameSetup;
 import app.aspect.Balance;
+import app.role.Civilian;
+import app.role.Guardian;
 import app.role.Killer;
 import app.role.Player;
+import app.role.PlayerFactory;
+import app.role.Role;
+import app.role.Seer;
+import app.role.Witch;
 import app.team.EvilTeam;
 import app.team.GoodTeam;
 
@@ -54,55 +60,35 @@ public class SpringConfiguration {
 	}
 	@Bean
 	@Scope("prototype")
-	public Player killer(){
-		return new Killer();
+	public Player seer(){
+		return new Seer();
+	}
+	@Bean
+	@Scope("prototype")
+	public Player witch(){
+		return new Witch();
+	}
+	@Bean
+	@Scope("prototype")
+	public Player guardian(){
+		return new Guardian();
+	}
+	@Bean
+	@Scope("prototype")
+	public Player civilian(){
+		return new Civilian();
 	}
 	
 	@Bean
-	public List<Player> players(GameSetup setup, GoodTeam goodTeam, EvilTeam evilTeam, 
-			Player guardian, Player seer, Player witch, Player civilian){//, Seer seer, Witch witch, Civilian civilian
+	public List<Player> players(GameSetup setup, GoodTeam goodTeam, EvilTeam evilTeam, PlayerFactory playerFactory){
 		Random random = new Random();
 		List<Player> players = new ArrayList<>();
 		
 		for(int i=0;i<setup.getTotalCount();i++){
 			int currentPlayerNumber = i+1;;
-			System.out.println("setup " +setup);
-			System.out.println();
 			int currentRoleIndex= random.nextInt(setup.getAllRoleList().size());
-			switch(setup.getAllRoleList().get(currentRoleIndex)){
-			case KILLER:
-				Player killer = killer();
-				killer.setNumber(currentPlayerNumber);
-				killer.setTeam(evilTeam);
-				players.add(killer);
-				break;
-			case GUARDIAN:
-				guardian.setNumber(currentPlayerNumber);
-				guardian.setTeam(goodTeam);
-				players.add(guardian);
-				break;
-			case SEER:
-				seer.setNumber(currentPlayerNumber);
-				seer.setTeam(goodTeam);
-				players.add(seer);
-				//players.add(player(Role.SEER, currentPlayerNumber, goodTeam));
-				break;
-			case WITCH:
-				witch.setNumber(currentPlayerNumber);
-				witch.setTeam(goodTeam);
-				players.add(witch);
-				//players.add(player(Role.WITCH, currentPlayerNumber, goodTeam));
-				break;
-
-			case CIVILIAN:
-				civilian.setNumber(currentPlayerNumber);
-				civilian.setTeam(goodTeam);
-				players.add(civilian);
-				//players.add(player(Role.CIVILIAN, currentPlayerNumber, goodTeam));
-				break;
-			default:
-				break;
-			}
+			Player player = PlayerFactory.createPlayer(setup.getAllRoleList().get(currentRoleIndex), goodTeam, evilTeam, currentPlayerNumber);
+			players.add(player);
 			setup.getAllRoleList().remove(currentRoleIndex);
 		}
 		System.out.println("playersList :" + players);
