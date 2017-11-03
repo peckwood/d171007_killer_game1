@@ -72,8 +72,8 @@ public class GameSetup {
 	}
 
 	public List<PlayerImpl> setup() {
-//		setAllRolesList();
-//		setupTeams();
+		setAllRolesList();
+		setupTeams();
 		assignRoles(allRoleList);
 		return players;
 	}

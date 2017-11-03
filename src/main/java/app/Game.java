@@ -7,8 +7,9 @@ import java.util.Optional;
 import java.util.Scanner;
 import java.util.function.Predicate;
 
-import org.apache.log4j.Logger;
 import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -17,17 +18,19 @@ import app.role.Player;
 import app.role.PlayerImpl;
 @Component
 public class Game {
-	static Logger log = Logger.getLogger(Game.class);
 	
 	@Autowired
 	private List<Player> players;
 	private int round = 1;
 	private String gameLog = "";
 	Scanner input  = new Scanner(System.in);
+	private final Logger JUDGE_LOOGER = LoggerFactory.getLogger("Judge Says");
+	private final Logger GAME_ANNOUNCER = LoggerFactory.getLogger("Game Announcer");
 	
 	public void checkGameStatus(){
 		System.out.println("checking game status");
-		goNightRound();
+		
+		//goNightRound();
 	}
 	
 	@Test
@@ -41,8 +44,7 @@ public class Game {
 	}
 	
 	private void goNightRound(){
-		log.fatal("Night  is here");
-		log.
+		GAME_ANNOUNCER.info("天黑请闭眼");
 		Predicate<Player> playerIsAvlive = player -> player.getStatus()!=Status.DEAD;
 		Predicate<Player> playerIsNightOwl = player -> player instanceof NightOwl;
 		players.stream()
